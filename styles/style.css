@@ -1,0 +1,1228 @@
+/* CSS Document */
+*, *::after, *::before {
+  box-sizing:border-box;  
+}
+
+html, body {
+  height:100%;
+  margin:0;
+  z-index: -2;
+  position: relative;
+}
+
+button:not([disabled]) {
+  cursor:url(/cursor/mariocursor-1.cur), auto;
+}
+
+/* jouw CSS vanaf hier */
+
+main {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  z-index: -3;
+
+  /* border: dashed; */
+}
+
+main > * {
+  position: absolute;
+}
+
+@font-face {
+  font-family: "Nintendo";
+  src: url(/font/EnsconceSansDEMO-Condensed.ttf);
+}
+
+body {
+  /* background-color: rgb(66, 66, 66); */
+  /* background-color: rgb(50, 98, 187); */
+  background-color: rgb(219, 172, 41);
+}
+
+body.colorchange {
+  background-color: rgb(63, 63, 63);
+}
+
+button {
+  width: 70px;
+  height: 70px;
+
+  position: absolute;
+  top: 90%;
+  left: 95%;
+
+  border-radius: 50%;
+  border: 0;
+  box-shadow: .1em .1em .4em #0005;
+}
+
+button:hover {
+  background-color: rgb(216, 216, 216);
+}
+
+button:active {
+  background-color: rgb(122, 122, 122);
+}
+
+/* main controller */
+
+.controller {
+  width: 720px;
+  height: 305px;
+
+  top: 50%;
+  left: calc(50% - 720px / 2);
+  z-index: -3;
+
+  /* border: dashed; */
+}
+
+.controller > * {
+  position: absolute;
+}
+
+/* player */
+
+.play-area {
+  width: 100%;
+  height: 45%;
+  /* border: dashed; */
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+
+  50% {
+    transform: translateY(-5em);
+    animation-timing-function: ease-in;
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.player {
+  --pixel-size:5px;
+
+  width: var(--pixel-size);
+  height: var(--pixel-size);
+  background-color: #500000;
+
+  position: absolute;
+  top: calc(50% - 50px / 2);
+  left: calc(50% - 50px / 2);
+
+   box-shadow: 
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 0) #500000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 0) #500000,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 0) #500000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 0) #500000,
+
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 1) #500000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 1) #f84070,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 1) #f8d870,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 1) #f84070,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 1) #f84070,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 1) #f84070,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 1) #500000,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 1) #500000,
+    
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 2) #500000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 2) #ffffff,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 2) #f8d870,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 2) #d8a038,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 2) #b02860,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 2) #b02860,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 2) #f84070,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 2) #f84070,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 2) #500000,
+    
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 3) #000,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 3) #000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 3) #000,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 3) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 3) #000,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 3) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 3) #b02860,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 3) #b02860,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 3) #f84070,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 3) #b02860,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 3) #500000,
+    
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 4) #b02860,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 4) #b02860,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 4) #b02860,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 4) #500000,
+    
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 5) #f87068,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 5) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 5) #f87068,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 5) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 5) #f87068,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 5) #000,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 5) #000,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 5) #000,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 5) #f8d0c0,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 5) #500000,
+    
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 6) #885818,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 6) #885818,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 6) #f8d0c0,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 6) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 6) #f8d0c0,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 6) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 6) #f8d0c0,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 6) #f87068,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 6) #000,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 6) #f8d0c0,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 6) #885818,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 6) #f8d0c0,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 6) #500000,
+
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 7) #885818,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 7) #000,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 7) #000,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 7) #885818,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 7) #f87068,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 7) #500000,
+    
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 8) #885818,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 8) #f87068,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 8) #f87068,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 8) #f87068,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 8) #f87068,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 8) #f87068,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 8) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 8) #f8d0c0,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 8) #f8d0c0,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 8) #000,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 8) #f8d0c0,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 8) #f87068,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 8) #000,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 8) #500000,
+    
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 9) #f8d0c0,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 9) #f87068,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 9) #f87068,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 9) #000,
+    
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 10) #000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 10) #000,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 10) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 10) #000,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 10) #f87068,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 10) #f87068,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 10) #f87068,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 10) #885818,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 10) #885818,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 10) #000,
+    
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 11) #203088,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 11) #885818,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 11) #885818,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 11) #885818,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 11) #885818,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 11) #b02860,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 11) #500000,
+    
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 12) #203088,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 12) #80d8c8,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 12) #80d8c8,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 12) #408098,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 12) #408098,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 12) #f84070,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 12) #b02860,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 12) #b02860,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 12) #500000,
+
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 13) #203088,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 13) #fff,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 13) #80d8c8,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 13) #fff,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 13) #fff,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 13) #408098,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 13) #885818,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 13) #885818,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 13) #885818,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 13) #500000,
+    
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 14) #203088,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 14) #fff,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 14) #80d8c8,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 14) #fff,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 14) #fff,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 14) #885818,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 14) #fff,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 14) #fff,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 14) #fff,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 14) #885818,
+    
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 15) #203088,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 15) #80d8c8,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 15) #80d8c8,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 15) #408098,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 15) #408098,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 15) #408098,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 15) #885818,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 15) #fff,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 15) #fff,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 15) #885818,
+    
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 16) #203088,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 16) #408098,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 16) #203088,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 16) #408098,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 16) #408098,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 16) #885818,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 16) #fff,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 16) #fff,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 16) #885818,
+    
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 17) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 17) #885818,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 17) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 17) #408098,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 17) #885818,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 17) #885818,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 17) #885818,
+    
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 18) #000,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 18) #f8d870,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 18) #000,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 18) #f8d870,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 18) #885818,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 18) #885818,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 18) #885818,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 18) #000,
+    
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 19) #000,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 19) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 19) #000,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 19) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 19) #000,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 19) #000,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 19) #000,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 19) #000;}
+
+    /* jump sprite */
+
+    .player.spring {
+
+    box-shadow: 
+
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * -3) #885818,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -3) #885818,
+
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * -2) #885818,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * -2) #fff,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -2) #fff,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * -2) #885818,
+
+    calc(var(--pixel-size) * -4) calc(var(--pixel-size) * -1) #885818,
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * -1) #fff,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * -1) #fff,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) #fff,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * -1) #fff,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * -1) #885818,
+
+    calc(var(--pixel-size) * -4) calc(var(--pixel-size) * 0) #885818,
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 0) #fff,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 0) #fff,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 0) #fff,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 0) #500000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 0) #500000,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 0) #500000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 0) #500000,
+
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 1) #885818,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 1) #fff8,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 1) #500000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 1) #f84070,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 1) #f8d870,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 1) #f84070,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 1) #f84070,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 1) #f84070,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 1) #500000,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 1) #500000,
+
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 2) #500000,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 2) #885818,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 2) #500000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 2) #ffffff,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 2) #f8d870,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 2) #d8a038,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 2) #b02860,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 2) #b02860,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 2) #f84070,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 2) #f84070,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 2) #500000,
+    
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 3) #000,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 3) #000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 3) #000,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 3) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 3) #000,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 3) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 3) #b02860,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 3) #b02860,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 3) #f84070,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 3) #b02860,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 3) #500000,
+    
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 4) #000,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 4) #b02860,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 4) #b02860,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 4) #b02860,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 4) #500000,
+    
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 5) #500000,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 5) #b02860,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 5) #f87068,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 5) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 5) #f87068,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 5) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 5) #f87068,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 5) #000,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 5) #000,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 5) #000,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 5) #f8d0c0,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 5) #500000,
+    
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 6) #885818,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 6) #885818,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 6) #f8d0c0,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 6) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 6) #f8d0c0,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 6) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 6) #f8d0c0,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 6) #f87068,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 6) #000,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 6) #f8d0c0,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 6) #885818,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 6) #f8d0c0,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 6) #500000,
+
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 7) #885818,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 7) #000,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 7) #000,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 7) #f8d0c0,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 7) #885818,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 7) #f87068,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 7) #500000,
+    
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 8) #885818,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 8) #f87068,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 8) #f87068,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 8) #f87068,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 8) #f87068,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 8) #f87068,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 8) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 8) #f8d0c0,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 8) #f8d0c0,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 8) #000,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 8) #f8d0c0,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 8) #f87068,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 8) #000,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 8) #500000,
+    
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 9) #f8d0c0,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 9) #f87068,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 9) #f87068,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 9) #000,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 9) #000,
+    
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 10) #000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 10) #000,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 10) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 10) #000,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 10) #f87068,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 10) #f87068,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 10) #f87068,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 10) #885818,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 10) #b02860,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 10) #885818,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 10) #885818,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 10) #885818,
+    
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 11) #203088,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 11) #885818,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 11) #885818,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 11) #885818,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 11) #885818,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 11) #b02860,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 11) #885818,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 11) #fff,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 11) #fff,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 11) #885818,
+    calc(var(--pixel-size) * 11) calc(var(--pixel-size) * 11) #885818,
+    
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 12) #203088,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 12) #80d8c8,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 12) #80d8c8,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 12) #408098,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 12) #408098,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 12) #f84070,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 12) #885818,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 12) #fff,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 12) #fff,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 12) #fff,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 12) #fff,
+    calc(var(--pixel-size) * 11) calc(var(--pixel-size) * 12) #885818,
+
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 13) #000,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 13) #000,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 13) #203088,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 13) #fff,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 13) #80d8c8,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 13) #fff,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 13) #fff,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 13) #408098,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 13) #408098,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 13) #885818,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 13) #fff,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 13) #fff,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 13) #fff,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 13) #fff,
+    calc(var(--pixel-size) * 11) calc(var(--pixel-size) * 13) #885818,
+    
+    calc(var(--pixel-size) * -4) calc(var(--pixel-size) * 14) #000,
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 14) #000,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 14) #f8d870,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 14) #000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 14) #fff,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 14) #80d8c8,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 14) #fff,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 14) #fff,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 14) #408098,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 14) #408098,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 14) #408098,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 14) #885818,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 14) #fff,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 14) #fff,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 14) #885818,
+
+    calc(var(--pixel-size) * -4) calc(var(--pixel-size) * 15) #000,
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 15) #000,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 15) #885818,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 15) #000,
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 15) #203088,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 15) #80d8c8,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 15) #408098,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 15) #408098,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 15) #408098,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 15) #408098,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 15) #408098,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 15) #408098,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 15) #885818,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 15) #885818,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 15) #000,
+
+
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 16) #000,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 16) #000,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 16) #885818,    
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 16) #000,
+    calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 16) #203088,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 16) #408098,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 16) #408098,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 16) #408098,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 16) #408098,
+    calc(var(--pixel-size) * 6) calc(var(--pixel-size) * 16) #203088,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 16) #203088,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 16) #203088,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 16) #885818,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 16) #000,
+
+    calc(var(--pixel-size) * -3) calc(var(--pixel-size) * 17) #000,
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 17) #000,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 17) #885818,    
+    calc(var(--pixel-size) * 0) calc(var(--pixel-size) * 17) #000,
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 17) #203088,
+    calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 17) #203088,
+    calc(var(--pixel-size) * 4) calc(var(--pixel-size) * 17) #203088,
+    calc(var(--pixel-size) * 5) calc(var(--pixel-size) * 17) #203088,
+    calc(var(--pixel-size) * 7) calc(var(--pixel-size) * 17) #000,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 17) #f8d870,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 17) #885818,
+    calc(var(--pixel-size) * 10) calc(var(--pixel-size) * 17) #000,
+
+    calc(var(--pixel-size) * -2) calc(var(--pixel-size) * 18) #000,
+    calc(var(--pixel-size) * -1) calc(var(--pixel-size) * 18) #000,
+    calc(var(--pixel-size) * 8) calc(var(--pixel-size) * 18) #000,
+    calc(var(--pixel-size) * 9) calc(var(--pixel-size) * 18) #000;
+  }
+
+
+.spring {
+  animation: jump .4s;
+}
+
+/* logo */
+
+.main-logo {
+  width: 70px;
+  height: 50px;
+  top: 17%;
+  left: 32%;
+
+  transform: scale(1.9);
+}
+
+.bol {
+  width: 10px;
+  height: 10px;
+  left: 10%;
+  background-color: rgb(209, 209, 209);
+  border-radius: 50%;
+  box-shadow: inset -.30em .25em 0 rgb(119, 119, 119);
+
+  position: absolute;
+}
+
+.een {
+  top: 5px;
+  left: 24%;
+}
+
+.ovaal {
+  width: 10px;
+  height: 5px;
+  background-color: rgb(119, 119, 119);
+  border-radius: 50%;
+
+  top: 16.5%;
+  left: 2%;
+  box-shadow: .6em .3em 0em rgb(119, 119, 119);
+
+  position: absolute;
+}
+
+p {
+  font-family: "Nintendo";
+  font-size: 2.3em;
+  color: rgb(119, 119, 119);
+
+  left: 36%;
+  top: -5%;
+  transform: skew(-6deg);
+}
+
+.ondertitel {
+  top: 11.5%;
+  background-color: rgb(119, 119, 119);
+  font-size: 1em;
+  color: rgb(209, 209, 209);
+  padding: .1em;
+  letter-spacing: .162em;
+  transform: scaleY(.5) skew(-4deg);
+}
+
+/* main controller */
+
+.balk {
+  background-color: rgb(209, 209, 209);
+  width: 415px;
+  height: 270px;
+
+  top: 0;
+  left: calc(50% - 415px / 2);
+
+  box-shadow: inset 0em .8em .3em -.3em #fff8;
+}
+
+.balk-2 {
+  background-color: #0004;
+  width: 242px;
+  height: 9px;
+
+  top: 86.3%;
+  left: 32.3%;
+
+  border-radius: 100% 100% 0% 0%;
+
+  filter: blur(.15em);
+}
+
+.cirkel {
+  background-color: rgb(209, 209, 209);
+  width: 305px;
+  height: 305px;
+  border-radius: 50%;
+  display: inline-block;
+
+  box-shadow: 
+    inset .5em .5em .3em #fff8,
+    inset -.5em -.5em .3em #0003,
+    
+    0em .3em .3em #0003;
+}
+
+.rechts {
+  left: calc(100% - 305px);
+}
+
+/* shoulder buttons */
+
+.shoulder {
+  width: 170px;
+  height: 40px;
+  background-color: rgb(190, 190, 190);
+
+  left: 11%;
+  top: -8px;
+
+  z-index: -1;
+
+  box-shadow: inset 0em .2em .1em #fff8;
+  cursor: url(/cursor/mariocursor-1.cur), auto;
+  transition: .2s;
+}
+
+.r {
+  left: 65%;
+  position: absolute;
+
+  border-radius: .4em 50% 0 0;
+
+  box-shadow: 
+    inset 0em .2em .1em #fff6,
+    inset .3em 0em .2em #0002,
+    inset -.3em 0em .2em #0003;
+
+}
+
+.l {
+  border-radius: 55% .4em 0 0;
+
+  box-shadow: 
+  inset 0em .2em .1em #fff6,
+  inset -.3em 0em .2em #0002,
+  inset .3em 0em .2em #0003;
+}
+
+.shoulder:active {
+  transform: translatey(10%);
+}
+
+/* d-pad */
+
+.dpaddark-bg {
+  width: 108px;
+  height: 108px;
+
+  top: 31.9%;
+  left: 13%;
+}
+
+.rectangle {
+  width: 108px;
+  height: 36px;
+  background-color: black;
+  /* outline: rgb(0, 0, 0) solid .32em; */
+  /* border: rgb(0, 0, 0) solid .2em; */
+  border-radius: .3em;
+  box-shadow: 0em 0em .07em .24em #000;
+}
+
+.v {
+  top: calc(50% - 36px / 2);
+  position: absolute;
+}
+
+.h {
+  transform: rotate(90deg);
+
+  top: calc(50% - 36px / 2);
+  position: absolute;
+}
+
+.dpad {
+  width: 70px;
+  height:70px;
+
+  /* background-color: red; */
+
+  top: 44%;
+  left: 18%;
+
+  z-index: 2;
+
+  transform-origin: 20% 20%;
+
+  transition: .2s;
+  
+}
+
+.left-hover {
+  transform: perspective(6em) rotatey(-5deg);
+}
+
+.right-hover {
+  transform: perspective(6em) rotatey(5deg);
+}
+
+.up-hover {
+  transform: perspective(6em) rotatex(5deg);
+}
+
+.down-hover {
+  transform: perspective(6em) rotatex(-5deg);
+}
+
+.d-pad {
+  transition: .2s;
+  width: 36px;
+  height: 36px;
+  background-color: rgb(78, 78, 78);
+  position: absolute;
+
+  cursor: url(/cursor/mariocursor-1.cur), auto;
+  
+}
+
+.left {
+  
+  left: -50%;
+
+  border-radius: .5em 0em 0em .5em;
+
+  display: grid;
+  place-items: center;
+  
+  box-shadow: 
+    /* inset .2em .2em .2em #000,
+    inset 0em -.2em .2em #000, */
+
+    inset .2em .2em .15em -.1em#fff6,
+    inset 0em -.2em .15em -.1em#0006;
+}
+
+.up {
+  top: -50%;
+  
+
+  border-radius: .3em .3em 0em 0em;
+
+  display: grid;
+  place-items: center;
+  
+  box-shadow: 
+    /* inset .2em .2em .2em #000,
+    inset -.2em 0em .2em #000, */
+
+    inset .2em .2em .15em -.1em #fff6,
+    inset -.2em 0em .15em -.1em #0006;
+}
+
+.down {
+  top: 50%;
+  
+
+  border-radius: 0 0 .5em .5em;
+
+  display: grid;
+  place-items: center;
+
+  box-shadow: 
+    /* inset -.2em -.2em .2em #000,
+    inset .3em -.1em .2em -.1em #000, */
+
+    inset .3em 0em .15em -.2em #fff6,
+    inset -.3em -.3em .15em -.2em #0006;
+}
+
+.right {
+  
+  left: 50%;
+
+  border-radius: 0 .5em .5em 0em;
+
+  display: grid;
+  place-items: center;
+
+  box-shadow: 
+    /* inset -.2em -.2em .2em #000,
+    inset 0em .4em .2em -.2em #000, */
+    
+    inset 0em .3em .15em -.2em #fff6,
+    inset -.3em -.3em .15em -.2em #0006;
+}
+
+.middle {
+  display: grid;
+  place-items: center;
+}
+
+.t-left {
+  width: 15px;
+  height: 15px;
+
+  transform: rotate(45deg);
+
+  background: linear-gradient(45deg, rgba(78,78,78,1) 43%, rgba(255,255,255,0.2) 50%, rgba(78,78,78,1) 54%);
+
+  box-shadow: 
+    inset .2em 0em .1em -.1em #0004,
+    inset 0em -.2em .1em -.1em #0004,
+    -.15em 0em .1em -.1em #0004,
+    0em .15em .1em -.1em #0004;
+}
+
+.t-up {
+  width: 15px;
+  height: 15px;
+
+  transform: rotate(45deg);
+
+  background: linear-gradient(135deg, rgba(78,78,78,1) 43%, rgba(255,255,255,0.2) 50%, rgba(78,78,78,1) 54%);
+
+  box-shadow: 
+    inset .2em .2em .1em -.1em #0004,
+    inset 0em 0em .1em -.1em #0004,
+    0em -.15em .1em -.1em #0004,
+    -.15em 0em .1em -.1em #0004;
+}
+
+.t-right {
+  width: 15px;
+  height: 15px;
+
+  transform: rotate(45deg);
+
+  background: linear-gradient(45deg, rgba(78,78,78,1) 43%, rgba(0, 0, 0, 0.2) 50%, rgba(78,78,78,1) 54%);
+
+  box-shadow: 
+    inset -.15em 0em .05em -.1em #fff3,
+    inset 0em .2em .05em -.1em #0003,
+    .15em 0em .1em -.1em #fff3,
+    0em -.15em .1em -.1em #0004;
+}
+
+.t-down {
+  width: 15px;
+  height: 15px;
+
+  transform: rotate(45deg);
+
+  background: linear-gradient(135deg, rgba(78,78,78,1) 43%, rgba(0, 0, 0, 0.2) 50%, rgba(78,78,78,1) 54%);
+
+  box-shadow: 
+    inset -.2em -.45em .1em -.4em #0004,
+    inset -.4em 0em .1em -.4em #fff4,
+    0em .15em .1em -.1em #0004,
+    .15em 0em .1em -.1em #fff4;
+}
+
+.c-middle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+
+  box-shadow: 
+    inset -.1em -.1em .1em#fff1,
+    inset .1em .1em .1em#0001,
+
+    .03em .03em .05em#fff1,
+    -.03em -.03em .05em#0001;
+}
+
+.d-pad-cirkel {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background-color: inherit;
+  
+  top: calc(50% - 170px / 2);
+  left: 9%;
+  z-index: 1;
+
+  box-shadow: 
+    inset .1em .1em .2em #0004,
+    inset -.1em -.1em .2em #fff4,
+    -.1em -.1em .1em #0004,
+    .1em .1em .1em #fff4;
+}
+
+/* face buttons */
+
+.all-buttons {
+  width: 209px;
+  height: 190px;
+  
+  top: calc(50% - 190px / 2);
+  left: 64%;
+  z-index: 2;
+}
+
+.face-button {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  position: absolute;
+
+  box-shadow: 
+  inset 0em 0em .1em .1em #0005,
+
+  inset .2em .2em .1em #fff6,
+  inset -.1em -.1em .1em #0002,
+
+  0em 0em .1em .1em #0002;
+
+  cursor: url(/cursor/mariocursor-1.cur), auto;;
+  transition: .2s;
+}
+
+.a {
+  background-color: red;
+
+  top: calc(50% - 65px / 2);
+  left: calc(100% - 65px);
+}
+
+.b {
+  background-color: rgb(253, 187, 5);
+
+  top: calc(100% - 65px);
+  left: calc(50% - 65px / 2);
+}
+
+.x {
+  background-color: rgb(14, 25, 185);
+  
+  top: 0;
+  left: calc(50% - 65px / 2);
+}
+
+.y {
+  background-color: rgb(15, 153, 27);
+
+  top: calc(50% - 65px / 2);
+  left: 0;
+}
+
+.a:active {
+  box-shadow: 
+  inset 0em 0em .1em .1em #fff5,
+
+  inset .4em .4em .3em #0006,
+  inset -.1em -.1em .1em #0002,
+
+  0em 0em .1em .1em #0002;
+
+}
+
+.b:active {
+  box-shadow: 
+  inset 0em 0em .1em .1em #fff5,
+
+  inset .4em .4em .3em #0006,
+  inset -.1em -.1em .1em #0002,
+
+  0em 0em .1em .1em #0002;
+
+}
+
+.x:active {
+  box-shadow: 
+  inset 0em 0em .1em .1em #fff5,
+
+  inset .4em .4em .3em #0006,
+  inset -.1em -.1em .1em #0002,
+
+  0em 0em .1em .1em #0002;
+
+}
+
+.y:active {
+  box-shadow: 
+  inset 0em 0em .1em .1em #fff5,
+
+  inset .4em .4em .3em #0006,
+  inset -.1em -.1em .1em #0002,
+
+  0em 0em .1em .1em #0002;
+
+}
+
+.button-pills {
+  top: 19%;
+  left: 65.5%;
+
+  width: 209px;
+  height: 190px;
+
+  z-index: 1;
+  transform: rotate(-41deg);
+  
+}
+
+.button-pill {
+  width: 180px;
+  height: 80px;
+  background-color: rgb(209, 209, 209);
+
+  border-radius: 10em;
+  position: relative;
+
+  box-shadow:
+  inset 0em 0em .1em #000,
+  0em 0em .1em #000,
+
+  inset 0em 0em .2em #fff,
+  0em 0em .2em #fff;
+}
+
+.two {
+  top: 7.5%;
+  left: 6%;
+}
+
+.startselect {
+  width: 130px;
+  height: 130px;
+  
+  transform: rotate(-41deg);
+
+  top: 50%;
+  left: 39%;
+}
+
+.start-select {
+  width: 70px;
+  height: 22px;
+  border-radius: 5em;
+  background-color: rgb(158, 158, 158);
+
+  box-shadow: 
+  inset -.2em .2em .5em #fff4,
+  inset -.4em .4em .5em #fff4,
+  inset 0em 0em 2em #0000,
+
+  inset .2em -.2em .5em #0002,
+  inset .4em -.4em .5em #0002,
+
+  0em 0em .2em #000,
+  0em 0em .4em #000,
+  0em 0em .6em #0006;
+
+  position: absolute;
+  
+  cursor: url(/cursor/mariocursor-1.cur), auto;
+  transition: .2s;
+
+}
+
+.select {
+  top: 44%;
+  left: 50%;
+
+}
+
+.start:active {
+  box-shadow: 
+  inset -.2em .2em .5em #0004,
+  inset -.4em .4em .5em #0004,
+  inset 0em 0em 2em #0008,
+
+  inset .2em -.2em .5em #fff2,
+  inset .4em -.4em .5em #fff2,
+
+  0em 0em .2em #000,
+  0em 0em .4em #000,
+  0em 0em .6em #0006;
+
+}
+
+.select:active {
+  box-shadow: 
+  inset -.2em .2em .5em #0004,
+  inset -.4em .4em .5em #0004,
+  inset 0em 0em 2em #0008,
+
+  inset .2em -.2em .5em #fff2,
+  inset .4em -.4em .5em #fff2,
+
+  0em 0em .2em #000,
+  0em 0em .4em #000,
+  0em 0em .6em #0006;
+  
+}
+
+/* bg elementen */
+
+.button-bg-onder {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background-color: rgb(141, 141, 141);
+  z-index: 0;
+
+  top: calc(50% - 280px / 2);
+  left: 59%;
+  
+  box-shadow:
+  inset 0em 0em .2em #000,
+  0em 0em .2em #000,
+  inset 0em 0em .1em #0005,
+  0em 0em .1em #0005,
+
+  inset 0em 0em .2em #fff,
+  0em 0em .2em #fff,
+  inset 0em 0em .3em #fff,
+  0em 0em .3em #fff;
+}
